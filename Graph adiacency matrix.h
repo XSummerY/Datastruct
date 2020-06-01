@@ -159,10 +159,10 @@ public:
 		}
 	}
 	int Prim() {
-		std::vector<int> Prims;
+		//std::vector<int> Prims;
 		std::vector<int> weight;
 		int sum = 0;
-		Prims.push_back(0);
+		//Prims.push_back(0);
 		weight.push_back(0);
 		for (int i = 1; i < numVertex; i++) {
 			weight.push_back(matrix[0][i]);
@@ -177,7 +177,7 @@ public:
 				j++;
 			}
 			if (t) {
-				Prims.push_back(t);
+				//Prims.push_back(t);
 				sum += weight[t];
 				weight[t] = 0;
 				for (int i = 1; i < numVertex; i++) {

@@ -1,7 +1,9 @@
 #pragma once
 #include<iostream>
+#include<vector>
 #include<queue>
 #include<assert.h>
+#include<limits.h>
 #include"Graph ADT.h"
 class Graphm :public Graph {
 private:
@@ -155,6 +157,37 @@ public:
 		if (next != -1) {
 			BFS(next, Q, true);
 		}
+	}
+	int Prim() {
+		std::vector<int> Prims;
+		std::vector<int> weight;
+		int sum = 0;
+		Prims.push_back(0);
+		weight.push_back(0);
+		for (int i = 1; i < numVertex; i++) {
+			weight.push_back(matrix[0][i]);
+		}
+		for (int i = 1; i < numVertex; i++) {
+			int j = 1, min = INT_MAX,t = 0;
+			while (j < numVertex) {
+				if (!weight[j] && weight[j] < min) {
+					min = weight[j];
+					t = j;
+				}
+				j++;
+			}
+			if (t) {
+				Prims.push_back(t);
+				sum += weight[t];
+				weight[t] = 0;
+				for (int i = 1; i < numVertex; i++) {
+					if (weight[i] && weight[i] > matrix[t][i]) {
+						weight[i] = matrix[t][i];
+					}
+				}
+			}
+		}
+		return sum;
 	}
 };
 
